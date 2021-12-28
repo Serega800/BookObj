@@ -140,11 +140,16 @@ namespace Csharp
             Console.WriteLine("\nВведите номер книги от 1 до 3, для отображения всех параметров книги в формате JSON");            
             ConsoleKeyInfo userInput = Console.ReadKey(); // Get user input                                   
             
-            if (InputIsValid(userInput))
+            while(userInput.Key != ConsoleKey.Escape)
             {
-                int index = int.Parse(userInput.KeyChar.ToString()) - 1;
-                Console.WriteLine("\n");
-                books[index].PrintAsJson();
+                if (InputIsValid(userInput))
+                {
+                    int index = int.Parse(userInput.KeyChar.ToString()) - 1;
+                    Console.WriteLine("\n");
+                    books[index].PrintAsJson();
+                    Console.WriteLine("Нажмите escape для выхода");
+                }
+                userInput = Console.ReadKey();
             }            
         }
     }    

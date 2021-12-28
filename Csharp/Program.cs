@@ -28,9 +28,8 @@ namespace Csharp
             {
                 get { return isbn; }
                 set
-                {
-                    //if (!isValidIsbn(value)) throw new ArgumentException("isbn number must contain 10 digits");
-                    if (!isValidIsbn(value)) throw new ArgumentException("isbn number must contain 10 digits");
+                {                    
+                    if (!IsValidIsbn(value)) throw new ArgumentException("isbn number must contain 10 digits");
                     isbn = value;
                 } 
             }
@@ -70,13 +69,8 @@ namespace Csharp
                 string jsonString = JsonSerializer.Serialize(this);
                 Console.WriteLine(jsonString);
             }
-        }
-        static void PrintAsJson(object obj)
-        {
-            string jsonString = JsonSerializer.Serialize(obj);            
-            Console.WriteLine(jsonString);
-        }        
-        static bool isValidIsbn(string isbn)
+        }      
+        static bool IsValidIsbn(string isbn)
         {
             // length must be 10
             int n = isbn.Length;
@@ -111,7 +105,7 @@ namespace Csharp
             // of digits is divisible by 11.
             return (sum % 11 == 0);
         }
-        public static bool inputIsValid(ConsoleKeyInfo input)
+        public static bool InputIsValid(ConsoleKeyInfo input)
         {
             int num;
             if (char.IsDigit(input.KeyChar))
@@ -132,11 +126,13 @@ namespace Csharp
         }
         static void Main(string[] args)
         {
-            
-            var books = new List<Book>();
-            books.Add(new Book("And quiet flows the Don", "Mikhail Sholokhov"));
-            books.Add(new Book("The King Must Die", "Mary Reanult", "0394751043", released: 1958));
-            books.Add(new Book("To Kill a Mogingbird", "Harper Lee", "0060935464", @"https://bookscafe.net/read/harper_lee-to_kill_a_mockingbird-147382.html#p1", 1960));
+
+            var books = new List<Book>
+            {
+                new Book("And quiet flows the Don", "Mikhail Sholokhov"),
+                new Book("The King Must Die", "Mary Reanult", "0394751043", released: 1958),
+                new Book("To Kill a Mogingbird", "Harper Lee", "0060935464", @"https://bookscafe.net/read/harper_lee-to_kill_a_mockingbird-147382.html#p1", 1960)
+            };
 
             foreach (var book in books)            
                 Console.WriteLine(book.Title);
@@ -144,7 +140,7 @@ namespace Csharp
             Console.WriteLine("\nВведите номер книги от 1 до 3, для отображения всех параметров книги в формате JSON");            
             ConsoleKeyInfo userInput = Console.ReadKey(); // Get user input                                   
             
-            if (inputIsValid(userInput))
+            if (InputIsValid(userInput))
             {
                 int index = int.Parse(userInput.KeyChar.ToString()) - 1;
                 Console.WriteLine("\n");

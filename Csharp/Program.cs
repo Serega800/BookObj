@@ -50,12 +50,7 @@ namespace Csharp
                 Isbn = isbn;
                 Reference = reference;
                 Released = released;
-            }
-
-            public void GetIdByTitle(string title)
-            {
-                Console.WriteLine($"Название книги: {title}  Id: {Id}");
-            }
+            }            
             public void Print()
             {
                 Console.WriteLine($"Title: {Title}; Author: {Author}; Id: {Id}.");

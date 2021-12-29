@@ -6,7 +6,7 @@ namespace Csharp
 {
     class Program
     {
-        class LabelAttribute : Attribute
+        private class LabelAttribute : Attribute
         {
             public string LabelText { get; set; }
             public LabelAttribute(string labelText)
@@ -56,13 +56,9 @@ namespace Csharp
             {
                 Console.WriteLine($"Название книги: {title}  Id: {Id}");
             }
-            public void GetBookByTitle(string title)
-            {
-                Console.WriteLine(title);
-            }
             public void Print()
             {
-                Console.WriteLine($"Id: {Id}  Title: {Title}");
+                Console.WriteLine($"Title: {Title}; Author: {Author}; Id: {Id}.");
             }
             public void PrintAsJson()
             {
